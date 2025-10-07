@@ -45,7 +45,7 @@ const emojiAudioMap = {
  "😩": "https://files.catbox.moe/b4m5aj.mp3",
  "🫣": "https://files.catbox.moe/ttb6hi.mp3",
  "🐸": "https://files.catbox.moe/utl83s.mp3",
- "🤰": "https://files.catbox.moe/twr5wf.mp3",
+ "🤰": "https://files.catbox.moe/jlgowl.mp3",
  "💪": "https://files.catbox.moe/j03dk9.mp3",
  "💃": "https://files.catbox.moe/jhyng8.mp3",
  "❤️": "https://files.catbox.moe/0qgv91.mp3",
@@ -76,7 +76,21 @@ const emojiAudioMap = {
  "🧹": "https://files.catbox.moe/2xadpd.mp3",
  "💨": "https://files.catbox.moe/mcxcgz.mp3",
  "🌹": "https://files.catbox.moe/pj2omq.mp3",
-
+ "🤕": "https://files.catbox.moe/fjq9b5.mp3",
+ "🥲": "https://files.catbox.moe/kh3241.mp3",
+ "🙆": "https://files.catbox.moe/uwa3pd.mp3",
+ "🫵": "https://files.catbox.moe/3f1f8c.mp3",
+ "🧑‍🍼": "https://files.catbox.moe/fhgno8.mp3",
+ "👸": "https://files.catbox.moe/dmdxpo.mp3",
+ "🔪": "https://files.catbox.moe/3f1f8c.mp3",
+ "😂": "https://files.catbox.moe/vez5z3.mp3",
+ "🎤": "https://files.catbox.moe/os2lvb.mp3",
+ "🤒": "https://files.catbox.moe/2gzdwm.mp3",
+ "🏊": "https://files.catbox.moe/awsi3p.mp3",
+ "🥵": "https://files.catbox.moe/mt5il0.mp3",
+"😵‍💫": "https://files.catbox.moe/yiqkp9.mp3",
+"🤩": "https://files.catbox.moe/bf6z44.mp3",
+"🫡": "https://files.catbox.moe/6jo967.mp3",
 };
 
 module.exports.handleEvent = async ({ api, event }) => {
