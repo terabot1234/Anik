@@ -11,7 +11,7 @@ cooldowns: 3,
 
 module.exports.run = async function({ api, event }) {
 return api.sendMessage(
-"🔗 GitHub Repo Link:\n\https://github.com/x01600004037-svg/RABBI69.git",
+"🔗 GitHub Repo Link:\https://i.imgur.com/4MmAmof.jpeg",
 event.threadID,
 event.messageID
 );
