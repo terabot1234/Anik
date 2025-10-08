@@ -69,16 +69,7 @@ try {
       const timeFormat = `${hours}:${minutes}:${seconds}`;  
       api.sendMessage(`[ GROUP UPDATE ]\n❯ ${(logMessageData.video) ? 'Video' : ''} call has ended.\n❯ Call duration: ${timeFormat}`, threadID);  
     } else if (logMessageData.joining_user) {  
-      const name = await Users.getNameUser(logMessageData.joining_user);  
-      api.sendMessage(`❯ [ GROUP UPDATE ]\n❯ ${name} Joined the ${(logMessageData.group_call_type == '1') ? 'Video' : ''} call.`, threadID);  
-    }  
-    break;  
-        }  
-        case "log:thread-color": {  
-        	dataThread.threadColor = event.logMessageData.thread_color || "🌤";  
-            if (global.configModule[this.config.name].sendNoti) api.sendMessage(`» [ GROUP UPDATE ]\n» ${event.logMessageBody.replace("Theme", "color")}`, threadID, async (error, info) => {  
-                if (global.configModule[this.config.name].autoUnsend) {  
-                    await new Promise(resolve => setTimeout(resolve, global.configModule[this.config.name].timeToUnsend * 1000));  
+      const name = await   await new Promise(resolve => setTimeout(resolve, global.configModule[this.config.name].timeToUnsend * 1000));  
                     return api.unsendMessage(info.messageID);  
                 } else return;  
             });  
@@ -111,5 +102,4 @@ try {
     await setData(threadID, { threadInfo: dataThread });  
 } catch (e) { console.log(e) };
 
-}
-
+            }
