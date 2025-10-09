@@ -18,7 +18,10 @@ module.exports.handleEvent = async ({ event, api, Users }) => {
  
  const bannedWords = [
  "chudi", "baler bot", "chutiya bot", "bot bokasoda", "bot tor boss re chudi",
- "বালের বট", "ভোদার বট", "ধোনের বট", "তোর বস রে চুদি", "রাব্বিরে চুদি", "খানকির পোলা", " মাদর চোদ", "তোর মায়রে চুদি", "ছেবলা মাগির পোলা", " বলদের মায়েরে চুদি", " মাগি", "পোতিতা মাগি", " মাগির পোলা ", " পাগোল চুদি "," সালা আবাল", " দোন",
+ "বালের বট", "ভোদার বট", "ধোনের বট", "তোর বস রে চুদি", "রাব্বিরে চুদি",
+ "খানকির পোলা", "মাদর চোদ", "তোর মায়রে চুদি", "ছেবলা মাগির পোলা",
+ "বলদের মায়েরে চুদি", "মাগি", "পোতিতা মাগি", "মাগির পোলা ",
+ "পাগোল চুদি ","সালা আবাল", "দোন",
  "sahadat mc", "mc Sahu", "bokachoda sahu", "fuck you", "sex", "sexy",
  "hedar bot", "বট চুদি", "crazy bot", "bc bot", "khankir polar bot",
  "bot tor heda", "হেড়ার বট", "bot paylac rồi", "con bot lòn", "cmm bot",
