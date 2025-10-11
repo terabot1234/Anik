@@ -71,9 +71,9 @@ module.exports.run = async function ({ event, api, args }) {
  else {
  const one = senderID, two = mention[0];
  return makeImage({ one, two }).then(path => api.sendMessage({
- body: "╔═════❖••° °••❖═════╗\n" +
+ body: "╔═════❖☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎❖═════╗\n" +
  " ভালোবাসার সেরা জুটি 💘\n" +
- "╚═════❖••° °••❖═════╝\n\n" +
+ "╚═════❖☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎❖═════╝\n\n" +
  " ✶⊶⊷⊷⊷⊷❍⊶⊷⊷⊷⊷✶\n" +
  " 👑 এই নে! এখন থেকে শুধু তোরই ❤️\n" +
  " 💌 তোর একমাত্র বয়ফ্রেন্ড হাজির 🩷\n" +
