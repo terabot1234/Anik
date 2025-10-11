@@ -54,7 +54,7 @@ module.exports.run = async ({ api, event, args }) => {
     if (args[0] == "admin") {
         let callback = () => api.sendMessage(
             {
-                body: `———»ADMIN BOT«———\n❯ Name: 𝐒𝐇𝐀𝐇𝐀𝐃𝐀𝐓 𝐒𝐀𝐇𝐔\n❯ Facebook: https://facebook.com/100001039692046\n❯ Thanks for using ${global.config.BOTNAME} bot`,
+                body: `———»ADMIN BOT«———\n❯ Name: ☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.\n❯ Facebook: https://facebook.com/61564002689411\n❯ Thanks for using ${global.config.BOTNAME} bot`,
                 attachment: fs.createReadStream(__dirname + "/cache/1.png")
             },
             event.threadID,
