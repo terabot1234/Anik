@@ -13,7 +13,7 @@ module.exports.run = async function({ api, event, Threads }) {
 	const logger = require("../../utils/log");
 	if (!global.configModule[this.config.name].enable) return;
 	
-	let formReport = "=== ─꯭─⃝‌‌☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.Notification ===" +
+	let formReport = "=== ─꯭─⃝‌‌-𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈☜︎︎.Notification ===" +
 					"\n\n» Thread ID: " + event.threadID +
 					"\n» Action: {task}" +
 					"\n» Action created by userID: " + event.author +
