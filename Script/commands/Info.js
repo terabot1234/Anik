@@ -2,7 +2,7 @@ module.exports.config = {
  name: "info",
  version: "1.2.6",
  hasPermssion: 0,
- credits: "𝐑𝐀𝐁𝐁𝐈✍︎𝐂𝐇𝐀𝐓✍︎𝐁𝐎𝐓",
+ credits: "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐈𝐬𝐥𝐚𝐦",
  description: "Bot information command",
  commandCategory: "For users",
  hide: true,
@@ -34,7 +34,7 @@ module.exports.run = async function ({ api, event, args, Users, Threads }) {
 
  const msg = `╭⭓ ⪩ 𝐁𝐎𝐓𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 ⪨
 │
-├─ 🤖 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ─꯭─⃝‌‌𝐂𝐀𝐏𝐓𝐈𝐍☃︎𝐑𝐀𝐁𝐁𝐈♲︎︎︎𝐕𝐀𝐈
+├─ 🤖 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ─꯭─⃝‌‌𝐒aim 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭
 ├─ ☢️ 𝗣𝗿𝗲𝗳𝗶𝘅 : ${config.PREFIX}
 ├─ ♻️ 𝗣𝗿𝗲𝗳𝗶𝘅 𝗕𝗼𝘅 : ${prefix}
 ├─ 🔶 𝗠𝗼𝗱𝘂𝗹𝗲𝘀 : ${commands.size}
@@ -44,13 +44,13 @@ module.exports.run = async function ({ api, event, args, Users, Threads }) {
 
 ╭⭓ ⪩ 𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢 ⪨
 │
-├─ 👑 𝗡𝗮𝗺𝗲 : 𝐂𝐀𝐏𝐓𝐈𝐍☃︎𝐑𝐀𝐁𝐁𝐈♲︎︎︎𝐕𝐀𝐈
+├─ 👑 𝗡𝗮𝗺𝗲 : 𝐒𝗮𝗶𝗺 𝐈𝐬𝐥𝐚𝐦
 ├─ 📲 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 :
-│ facebook.com/61564002689411
+│ facebook.com/61566961113103
 ├─ 💌 𝗠𝗲𝘀𝘀𝗲𝗻𝗴𝗲𝗿 :
-│ m.me/61564002689411
+│ m.me/61566961113103
 ├─ 📞 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 :
-│ wa.me/+8801795486467
+│ wa.me/+8801961046150
 │
 ╰───────⭓
 
@@ -62,13 +62,13 @@ module.exports.run = async function ({ api, event, args, Users, Threads }) {
 ╰───────⭓
 
 ❤️ 𝗧𝗵𝗮𝗻𝗸𝘀 𝗳𝗼𝗿 𝘂𝘀𝗶𝗻𝗴 🌺
- 😍─꯭─⃝‌‌𝐑𝐀𝐁𝐁𝐈✍︎𝐂𝐇𝐀𝐓✍︎𝐁𝐎𝐓😘`;
+ 😍─꯭─⃝‌‌𝐒𝗮𝗶𝗺 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭😘`;
 
  const imgLinks = [
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg"
+ "https://i.imgur.com/ddrplrw.jpeg",
+ "https://i.imgur.com/ddrplrw.jpeg",
+ "https://i.imgur.com/ddrplrw.jpeg",
+ "https://i.imgur.com/ddrplrw.jpeg"
  ];
 
  const imgLink = imgLinks[Math.floor(Math.random() * imgLinks.length)];
@@ -81,4 +81,4 @@ module.exports.run = async function ({ api, event, args, Users, Threads }) {
  };
 
  return request(encodeURI(imgLink)).pipe(fs.createWriteStream(__dirname + "/cache/info.jpg")).on("close", callback);
- }
+};
