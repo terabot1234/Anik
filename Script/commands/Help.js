@@ -1,53 +1,161 @@
 const fs = require("fs-extra");
 const request = require("request");
+const path = require("path");
 
 module.exports.config = {
- name: "helpall",
- version: "1.0.0",
- hasPermssion: 0,
- credits: "𝐂𝐀𝐏𝐓𝐈𝐀𝐍☠︎︎𝐑𝐀𝐁𝐁𝐈.𝐕𝐀𝐈",
- description: "Displays all available commands in one page",
- commandCategory: "system",
- usages: "[No args]",
- cooldowns: 5
+    name: "help",
+    version: "2.0.0",
+    hasPermssion: 0,
+    credits: "SHAHADAT SAHU",
+    description: "Shows all commands with details",
+    commandCategory: "system",
+    usages: "[command name/page number]",
+    cooldowns: 5,
+    envConfig: {
+        autoUnsend: true,
+        delayUnsend: 20
+    }
 };
 
-module.exports.run = async function ({ api, event }) {
- const { commands } = global.client;
- const { threadID, messageID } = event;
+module.exports.languages = {
+    "en": {
+        "moduleInfo": `╭━━━━━━━━━━━━━━━━╮
+┃ ✨ 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐈𝐍𝐅𝐎 ✨
+┣━━━━━━━━━━━┫
+┃ 🔖 Name: %1
+┃ 📄 Usage: %2
+┃ 📜 Description: %3
+┃ 🔑 Permission: %4
+┃ 👨‍💻 Credit: %5
+┃ 📂 Category: %6
+┃ ⏳ Cooldown: %7s
+┣━━━━━━━━━━━━━━━━┫
+┃ ⚙ Prefix: %8
+┃ 🤖 Bot Name: %9
+┃ 👑 Owner: 𝐒𝐀𝐈𝐌 𝐁𝐇𝐀𝐈
+╰━━━━━━━━━━━━━━━━╯`,
+        "helpList": "[ There are %1 commands. Use: \"%2help commandName\" to view more. ]",
+        "user": "User",
+        "adminGroup": "Admin Group",
+        "adminBot": "Admin Bot"
+    }
+};
 
- const allCommands = [];
+// এখানে আপনার ফোটো Imgur লিংক করে বসাবেন✅
 
- for (let [name] of commands) {
- if (name && name.trim() !== "") {
- allCommands.push(name.trim());
- }
- }
+const helpImages = [
+    "https://i.imgur.com/ddrplrw.jpeg",
+    "https://i.imgur.com/ddrplrw.jpeg",
+    "https://i.imgur.com/ddrplrw.jpeg",
+    "https://i.imgur.com/ddrplrw.jpeg"
+];
 
- allCommands.sort();
+function downloadImages(callback) {
+    let files = [];
+    let completed = 0;
 
- const finalText = `╔═══❖ 🌟 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐋𝐈𝐒𝐓 🌟 ❖═══╗
-${allCommands.map(cmd => `║ ➔ ${cmd}`).join("\n")}
-╠═════🔰 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎 🔰═════╣
-║ 🤖 𝐁𝐨𝐭: ─꯭─⃝‌‌𝐑𝐀𝐁𝐁𝐈 𝐂𝐇𝐀𝐓✍︎𝐁𝐎𝐓
-║ 👑 𝐎𝐰𝐧𝐞𝐫: 𝐂𝐀𝐏𝐓𝐈𝐀𝐍☠︎︎𝐑𝐀𝐁𝐁𝐈.𝐕𝐀𝐈
-║ 📦 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬: ${allCommands.length} 
-╚═══════════════════════╝`;
+    helpImages.forEach((url, i) => {  
+        let filePath = path.join(__dirname, "cache", `help${i}.jpg`);  
+        files.push(filePath);  
+        request(url).pipe(fs.createWriteStream(filePath)).on("close", () => {  
+            completed++;  
+            if (completed === helpImages.length) callback(files);  
+        });  
+    });
+}
 
- 
- const backgrounds = [
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg",
- "https://i.imgur.com/uGhfdDy.jpeg"
- ];
- const selectedBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
- const imgPath = __dirname + "/cache/helpallbg.jpg";
+module.exports.handleEvent = function ({ api, event, getText }) {
+    const { commands } = global.client;
+    const { threadID, messageID, body } = event;
 
- const callback = () =>
- api.sendMessage({ body: finalText, attachment: fs.createReadStream(imgPath) }, threadID, () => fs.unlinkSync(imgPath), messageID);
+    if (!body || typeof body === "undefined" || body.indexOf("help") != 0) return;  
+    const splitBody = body.slice(body.indexOf("help")).trim().split(/\s+/);  
+    if (splitBody.length < 2 || !commands.has(splitBody[1].toLowerCase())) return;  
 
- request(encodeURI(selectedBg))
- .pipe(fs.createWriteStream(imgPath))
- .on("close", () => callback());
+    const threadSetting = global.data.threadData.get(parseInt(threadID)) || {};  
+    const command = commands.get(splitBody[1].toLowerCase());  
+    const prefix = threadSetting.PREFIX || global.config.PREFIX;  
+
+    const detail = getText("moduleInfo",  
+        command.config.name,  
+        command.config.usages || "Not Provided",  
+        command.config.description || "Not Provided",  
+        command.config.hasPermssion,  
+        command.config.credits || "Unknown",  
+        command.config.commandCategory || "Unknown",  
+        command.config.cooldowns || 0,  
+        prefix,  
+        global.config.BOTNAME || "𝐒𝗔𝗜𝗠 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
+    );  
+
+    downloadImages(files => {  
+        const attachments = files.map(f => fs.createReadStream(f));  
+        api.sendMessage({ body: detail, attachment: attachments }, threadID, () => {  
+            files.forEach(f => fs.unlinkSync(f));  
+        }, messageID);  
+    });
+};
+
+module.exports.run = function ({ api, event, args, getText }) {
+    const { commands } = global.client;
+    const { threadID, messageID } = event;
+
+    const threadSetting = global.data.threadData.get(parseInt(threadID)) || {};  
+    const prefix = threadSetting.PREFIX || global.config.PREFIX;  
+
+    if (args[0] && commands.has(args[0].toLowerCase())) {  
+        const command = commands.get(args[0].toLowerCase());  
+
+        const detailText = getText("moduleInfo",  
+            command.config.name,  
+            command.config.usages || "Not Provided",  
+            command.config.description || "Not Provided",  
+            command.config.hasPermssion,  
+            command.config.credits || "Unknown",  
+            command.config.commandCategory || "Unknown",  
+            command.config.cooldowns || 0,  
+            prefix,  
+            global.config.BOTNAME || "𝐒𝐡𝐚𝐡𝐚𝐝𝐚𝐭 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭"  
+        );  
+
+        downloadImages(files => {  
+            const attachments = files.map(f => fs.createReadStream(f));  
+            api.sendMessage({ body: detailText, attachment: attachments }, threadID, () => {  
+                files.forEach(f => fs.unlinkSync(f));  
+            }, messageID);  
+        });  
+        return;  
+    }  
+
+    const arrayInfo = Array.from(commands.keys())
+        .filter(cmdName => cmdName && cmdName.trim() !== "")
+        .sort();  
+
+    const page = Math.max(parseInt(args[0]) || 1, 1);  
+    const numberOfOnePage = 20;  
+    const totalPages = Math.ceil(arrayInfo.length / numberOfOnePage);  
+    const start = numberOfOnePage * (page - 1);  
+    const helpView = arrayInfo.slice(start, start + numberOfOnePage);  
+
+    let msg = helpView.map(cmdName => `┃ ✪ ${cmdName}`).join("\n");
+
+    const text = `╭━━━━━━━━━━━━━━━━╮
+┃ 📜 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐋𝐈𝐒𝐓 📜
+┣━━━━━━━━━━━━━━━┫
+┃ 📄 Page: ${page}/${totalPages}
+┃ 🧮 Total: ${arrayInfo.length}
+┣━━━━━━━━━━━━━━━━┫
+${msg}
+┣━━━━━━━━━━━━━━━━┫
+┃ ⚙ Prefix: ${prefix}
+┃ 🤖 Bot Name: ${global.config.BOTNAME || "𝐒𝐀𝐈𝐌 𝐂𝐀𝐓 𝐁𝐎𝐓"}
+┃ 👑 Owner: 𝐒𝐀𝐈𝐌 𝐁𝐇𝐀𝐈
+╰━━━━━━━━━━━━━━━━╯`;
+
+    downloadImages(files => {  
+        const attachments = files.map(f => fs.createReadStream(f));  
+        api.sendMessage({ body: text, attachment: attachments }, threadID, () => {  
+            files.forEach(f => fs.unlinkSync(f));  
+        }, messageID);  
+    });  
 };
