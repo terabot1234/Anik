@@ -21,7 +21,7 @@ module.exports.run = async ({ api, event, args, client, Users, Threads, __GLOBAL
   const request = global.nodemodule["request"];
   const fs = global.nodemodule["fs-extra"];
 
-  var captions = ["☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.তোগো বলছে এই বিডিও নে এবার যা হেন্ডেল মেরে আয় 🙂"];
+  var captions = ["☞︎︎︎𝐒𝐀𝐈𝐌✿𝐕𝐀𝐈☜︎︎.তোগো বলছে এই বিডিও নে এবার যা হেন্ডেল মেরে আয় 🙂"];
   var caption = captions[Math.floor(Math.random() * captions.length)];
 
   var links = [
