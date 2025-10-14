@@ -5,7 +5,7 @@ module.exports.config = {
   name: "antiProtect",
   version: "1.1.0",
   hasPermssion: 0,
-  credits: "RABBI ISLAM ",
+  credits: "SAIM ISLAM ",
   description: "Protects group name, photo and nicknames",
   eventType: ["log:thread-name", "log:thread-icon", "log:user-nickname"],
   cooldowns: 3
@@ -26,7 +26,7 @@ module.exports.run = async function({ api, event, Threads, Users }) {
 
     const threadInfo = await api.getThreadInfo(threadID);
     const adminIDs = (threadInfo.adminIDs || []).map(u => u.id);
-    const botOwners = ["100001039692046"];
+    const botOwners = ["61566961113103"];
     const isAdmin = adminIDs.includes(senderID) || botOwners.includes(senderID);
 
     const cacheFile = `${cacheDir}${threadID}.json`;
