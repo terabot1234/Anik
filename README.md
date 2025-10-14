@@ -1,6 +1,6 @@
 ---------
 
-### —͟͟͞͞☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.𝐂𝐇𝐀𝐓 𝐁𝐎𝐓  𝐅𝐎𝐑𝐊  🌺
+### —͟͟͞͞𝐒𝐀𝐈𝐌 𝐈𝐒𝐋𝐀𝐌 𝐌𝐀𝐇𝐈𝐌 𝐕𝐀𝐈 🌺
 
 ❖ **`A Messenger Multi Device Bot To Take Your Messenger To Another Level!`** 
 
@@ -9,11 +9,11 @@
 Assalamualaikum Everyone!  
 **Welcome to My RABBi CHAT BOT Fork!**
 
-![Box-shaped Image](https://i.imgur.com/ZRQpRGL.jpeg)
+![Box-shaped Image](https://i.imgur.com/3CmxtdX.jpeg)
 
 <p align="center" style="animation: glow 2s infinite alternate; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-  <span style="font-size: 24px; font-weight: bold;">RABBI CHAT BOT</span><br>
-  <span> Develop By RABBI vai</span>
+  <span style="font-size: 24px; font-weight: bold;">SAIM CHAT BOT</span><br>
+  <span> Develop By SAIM vai</span>
 </p>
 
 
@@ -136,15 +136,15 @@ ___
 
 ## 👨‍💻 **ABOUT THE DEVELOPER**  
   
-**Name:** **`RABBI ISLAM`**  
-**Nice Name:** **`RABBI`**  
+**Name:** **`SAIM ISLAM`**  
+**Nice Name:** **`SAIM`**  
 **Profession:** **`STUDENT & CHATBOT DEVELOPER`**  
-**Location:** **`KHAGRACHARI, BANGLADESH`**  
+**Location:** **`BORISAL, BANGLADESH`**  
 
 ### 📞 **CONTACT INFORMATION**  
-- **WhatsApp:** **[01795486467](https://wa.me/+8801795486467)**  
-- **Facebook:** **[Facebook ID](https://facebook.com/61564002689411)**  
-- **Messenger:** **[Message Me](http://m.me/61564002689411)**  
+- **WhatsApp:** **[01961046150](https://wa.me/+8801961046150)**  
+- **Facebook:** **[Facebook ID](https://facebook.com/61566961113103)**  
+- **Messenger:** **[Message Me](http://m.me/61566961113103)**  
 
 ### 🚀 **DEVELOPMENT APPROACH**  
 - 💻 **Copy-paste techniques with customizations**  
@@ -165,10 +165,10 @@ If you need any help, you can contact the admin.
 Please do not disturb the admin unless you have a special need. Thank you! 
 
 <p align="center">
-  <a href="https://wa.me/+8801882333052?text=Assalamualaikum%20Admin%20SHAHADAT%20SAHU%20Need%20Help%20Please%20Brother%20🫶">
+  <a href="https://wa.me/+8801961046150?text=Assalamualaikum%20Admin%20SHAHADAT%20SAHU%20Need%20Help%20Please%20Brother%20🫶">
     <img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white">
   </a>
-  <a href="https://m.me/100001039692046">
+  <a href="https://m.me/61566961113103">
     <img alt="Messenger" src="https://img.shields.io/badge/Messenger-00B2FF?style=for-the-badge&logo=messenger&logoColor=white">
   </a>
 </p>
@@ -184,7 +184,7 @@ Please do not disturb the admin unless you have a special need. Thank you!
 
 ---
 
-💖 **Thank You For Choosing ☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.𝗖𝗵𝗮𝘁 𝗕𝗼𝘁!**  
+💖 **Thank You For Choosing ☞︎︎︎𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈☜︎︎.𝗖𝗵𝗮𝘁 𝗕𝗼𝘁!**  
 🗓️ *Release Date:* `11/08/2025 at 02:00`  
 ⭐ **Please don't forget to give a star after forking! It really helps!**
 
