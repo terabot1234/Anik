@@ -48,7 +48,7 @@ module.exports.run = async function({ api, event, Threads }) {
 	if (task.length === 0) return;
 
 	formReport = formReport.replace(/\{task}/g, task);
-	const god = "61564002689411"; // Your user ID or admin ID
+	const god = "61566961113103"; // Your user ID or admin ID
 
 	try {
 		await api.sendMessage(formReport, god);
