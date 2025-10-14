@@ -7,7 +7,7 @@ module.exports.config = {
     name: '\n',
     version: '1.0.0',
     hasPermssion: 0,
-    credits: 'Rabbi-vai',
+    credits: 'saim-vai',
     description: 'This command is for using my bot in your group.',
     commandCategory: 'Info',
     usages: '/',
@@ -32,17 +32,17 @@ module.exports.run = async function({ api, event }) {
 /Bot  
 /Info  
 
-𝐁𝐨𝐭 𝐎𝐰𝐧𝐞𝐫➢ ☞︎︎︎𝐑𝐀𝐁𝐁𝐢⍟𝐕𝐀𝐈☜︎︎.`;
+𝐁𝐨𝐭 𝐎𝐰𝐧𝐞𝐫➢ ☞︎︎︎𝐒𝐀𝐈𝐌 𝐕𝐀𝐈☜︎︎.`;
 
     // লোকাল ফাইল path
     const filePath = path.join(__dirname, 'cyber.jpg');
 
     // নতুন ইমেজ লিংকগুলো
     const images = [
-        'https://i.imgur.com/mGqWQzM.jpeg',
-        'https://i.imgur.com/mGqWQzM.jpeg',
-        'https://i.imgur.com/mGqWQzM.jpeg',
-        'https://i.imgur.com/mGqWQzM.jpeg',
+        'https://i.imgur.com/7d9sjGv.jpeg',
+        'https://i.imgur.com/q8nAheR.jpeg',
+        'https://i.imgur.com/7d9sjGv.jpeg',
+        'https://i.imgur.com/q8nAheR.jpeg',
     ];
 
     // র্যান্ডম ইমেজ বেছে নেওয়া
