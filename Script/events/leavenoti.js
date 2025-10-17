@@ -4,9 +4,9 @@ const path = require("path");
 module.exports.config = {
   name: "leave",
   eventType: ["log:unsubscribe"],
-  version: "3.4.0",
+  version: "3.6.0",
   credits: "𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈 | Modified by Akash",
-  description: "Leave message system with gif/video/image for leave & kick"
+  description: "Leave message system with gif/video/image for leave & kick (with debug)"
 };
 
 module.exports.onLoad = function () {
@@ -22,15 +22,26 @@ module.exports.onLoad = function () {
 module.exports.run = async function ({ api, event, Users, Threads }) {
   try {
     const { threadID } = event;
-    const leftID = event.logMessageData?.leftParticipantFbId;
-
+    const leftID = event.logMessageData?.leftParticipantFbId || event.logMessageData?.participant_id;
     if (!leftID) return;
     if (leftID == api.getCurrentUserID()) return; // বট নিজে গেলে কিছু না পাঠাবে
 
     const threadData = global.data.threadData.get(parseInt(threadID)) || (await Threads.getData(threadID)).data;
     const userName = global.data.userName.get(leftID) || await Users.getNameUser(leftID);
 
-    const isLeave = (event.author == leftID);
+    // 🪵 DEBUG START
+    console.log("========== LEAVE/KICK EVENT ==========");
+    console.log("Thread ID:", threadID);
+    console.log("Left ID:", leftID);
+    console.log("Author (who did the action):", event.author);
+    console.log("--------------------------------------");
+    // 🪵 DEBUG END
+
+    // ✅ ফিক্সড কন্ডিশন
+    const isLeave = (!event.author || event.author == leftID);
+
+    console.log(isLeave ? "👉 Detected: LEAVE event" : "👉 Detected: KICK event");
+
     const typeText = isLeave
       ? "তুই নিজেই গ্রুপ থেকে লিভ নিলি 😤 আবার আইসিস না! 🚫"
       : "তোমাকে গ্রুপ থেকে লাথি মেরে বের করে দেওয়া হলো 🤣🚪";
@@ -45,29 +56,38 @@ module.exports.run = async function ({ api, event, Users, Threads }) {
 
     msg = msg.replace(/\{name}/g, userName).replace(/\{type}/g, typeText);
 
-    // ফাইল পাথ চেক (ভিডিও/জিআইএফ/ইমেজ সব সাপোর্ট)
     const leavePath = path.join(__dirname, "cache", "leaveGif");
     const kickPath = path.join(__dirname, "cache", "kickGif");
-
-    // লিভ নাকি কিক অনুযায়ী ফাইল বেছে নাও
     const folderPath = isLeave ? leavePath : kickPath;
+
+    // 🎬 ফাইল লিস্ট চেক
     const fileList = fs.readdirSync(folderPath).filter(file =>
-      [".mp4", ".gif", ".jpg", ".png", ".jpeg", ".mp3"].some(ext => file.endsWith(ext))
+      [".mp4", ".gif", ".jpg", ".png", ".jpeg", ".mp3"].some(ext => file.toLowerCase().endsWith(ext))
     );
 
-    // যদি ফাইল থাকে তাহলে প্রথমটা (বা random চাইলে random বেছে নিতে পারো)
+    console.log("📁 Folder path:", folderPath);
+    console.log("📄 Files found:", fileList);
+
     const selectedFile = fileList.length > 0
-      ? path.join(folderPath, fileList[0]) // প্রথম ফাইলটা
+      ? path.join(folderPath, fileList[Math.floor(Math.random() * fileList.length)])
       : null;
+
+    console.log("🎥 Selected file:", selectedFile ? path.basename(selectedFile) : "❌ No file found");
 
     let attachment = null;
     if (selectedFile && fs.existsSync(selectedFile)) {
       attachment = fs.createReadStream(selectedFile);
     }
 
-    return api.sendMessage(
+    // পাঠানো হচ্ছে
+    api.sendMessage(
       attachment ? { body: msg, attachment } : { body: msg },
-      threadID
+      threadID,
+      (err) => {
+        if (err) console.error("❌ Message Send Error:", err);
+        else console.log("✅ Message sent successfully!");
+        console.log("======================================\n");
+      }
     );
 
   } catch (err) {
