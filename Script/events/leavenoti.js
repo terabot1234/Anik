@@ -1,43 +1,76 @@
+const fs = require("fs-extra");
+const path = require("path");
+
 module.exports.config = {
   name: "leave",
   eventType: ["log:unsubscribe"],
-  version: "1.0.0",
-  credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️",
-  description: "Thông báo bot hoặc người rời khỏi nhóm",
-  dependencies: {
-    "fs-extra": "",
-    "path": ""
+  version: "3.4.0",
+  credits: "𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈 | Modified by Akash",
+  description: "Leave message system with gif/video/image for leave & kick"
+};
+
+module.exports.onLoad = function () {
+  const folders = [
+    path.join(__dirname, "cache", "leaveGif"),
+    path.join(__dirname, "cache", "kickGif")
+  ];
+  for (const folder of folders) {
+    if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true });
   }
 };
 
-module.exports.run = async function({ api, event, Users, Threads }) {
-  if (event.logMessageData.leftParticipantFbId == api.getCurrentUserID()) return;
+module.exports.run = async function ({ api, event, Users, Threads }) {
+  try {
+    const { threadID } = event;
+    const leftID = event.logMessageData?.leftParticipantFbId;
 
-  const { createReadStream, existsSync, mkdirSync } = global.nodemodule["fs-extra"];
-  const { join } = global.nodemodule["path"];
-  const { threadID } = event;
+    if (!leftID) return;
+    if (leftID == api.getCurrentUserID()) return; // বট নিজে গেলে কিছু না পাঠাবে
 
-  const data = global.data.threadData.get(parseInt(threadID)) || (await Threads.getData(threadID)).data;
-  const name = global.data.userName.get(event.logMessageData.leftParticipantFbId) || await Users.getNameUser(event.logMessageData.leftParticipantFbId);
+    const threadData = global.data.threadData.get(parseInt(threadID)) || (await Threads.getData(threadID)).data;
+    const userName = global.data.userName.get(leftID) || await Users.getNameUser(leftID);
 
-  const type = (event.author == event.logMessageData.leftParticipantFbId)
-    ? " কিরে সাহস কম না  গ্রুপের এডমিনের পারমিশন ছাড়া তুই লিভ  নিস😡😠🤬 \n✦─────꯭─⃝‌‌☞︎︎︎𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈☜︎︎.𝐂𝐇𝐀𝐓 𝐁𝐎𝐓────✦"
-    : "তোমার এই গ্রুপে থাকার কোনো যোগ্যাতা নেই বলদ😡\nতাই তোমাকে লাথি মেরে গ্রুপ থেকে বের করে দেওয়া হলো🤪 WELLCOME REMOVE🤧\n✦─────꯭─⃝‌‌☞︎︎︎𝐒𝐀𝐈𝐌⍟𝐕𝐀𝐈☜︎︎.𝐂𝐇𝐀𝐓 𝐁𝐎𝐓────✦";
+    const isLeave = (event.author == leftID);
+    const typeText = isLeave
+      ? "তুই নিজেই গ্রুপ থেকে লিভ নিলি 😤 আবার আইসিস না! 🚫"
+      : "তোমাকে গ্রুপ থেকে লাথি মেরে বের করে দেওয়া হলো 🤣🚪";
 
-  const path = join(__dirname, "Shahadat", "leaveGif");
-  const gifPath = join(path, `leave1.gif`);
+    let msg = (typeof threadData.customLeave == "undefined")
+      ? `━━━━━━━━━━━━━━━━━━━━━
+😢 {name} {type}
+━━━━━━━━━━━━━━━━━━━━━
+ভালো থাকিস... কিন্তু গ্রুপের মজা মিস করবি 😉
+✦─────꯭─⃝‌‌☞︎︎︎𝐒𝐀𝐈𝐌 𝐕𝐀𝐈☜︎︎𝐂𝐇𝐀𝐓 𝐁𝐎𝐓────✦`
+      : threadData.customLeave;
 
-  if (!existsSync(path)) mkdirSync(path, { recursive: true });
+    msg = msg.replace(/\{name}/g, userName).replace(/\{type}/g, typeText);
 
-  let msg = (typeof data.customLeave == "undefined")
-    ? "ইস {name} {type} "
-    : data.customLeave;
+    // ফাইল পাথ চেক (ভিডিও/জিআইএফ/ইমেজ সব সাপোর্ট)
+    const leavePath = path.join(__dirname, "cache", "leaveGif");
+    const kickPath = path.join(__dirname, "cache", "kickGif");
 
-  msg = msg.replace(/\{name}/g, name).replace(/\{type}/g, type);
+    // লিভ নাকি কিক অনুযায়ী ফাইল বেছে নাও
+    const folderPath = isLeave ? leavePath : kickPath;
+    const fileList = fs.readdirSync(folderPath).filter(file =>
+      [".mp4", ".gif", ".jpg", ".png", ".jpeg", ".mp3"].some(ext => file.endsWith(ext))
+    );
 
-  const formPush = existsSync(gifPath)
-    ? { body: msg, attachment: createReadStream(gifPath) }
-    : { body: msg };
+    // যদি ফাইল থাকে তাহলে প্রথমটা (বা random চাইলে random বেছে নিতে পারো)
+    const selectedFile = fileList.length > 0
+      ? path.join(folderPath, fileList[0]) // প্রথম ফাইলটা
+      : null;
 
-  return api.sendMessage(formPush, threadID);
+    let attachment = null;
+    if (selectedFile && fs.existsSync(selectedFile)) {
+      attachment = fs.createReadStream(selectedFile);
+    }
+
+    return api.sendMessage(
+      attachment ? { body: msg, attachment } : { body: msg },
+      threadID
+    );
+
+  } catch (err) {
+    console.error("❌ Leave Event Error:", err);
+  }
 };
