@@ -29,6 +29,7 @@ const textAudioMap = {
   "ভালো হও": "https://files.catbox.moe/kf6zot.mp3",
   "বালের টিম": "https://files.catbox.moe/z9th9f.mp3", 
   "আম্মু আছে":  "https://files.catbox.moe/aviioz.mp3",
+  "ঝামেলা কইরো না": "https://files.catbox.moe/9xyez9.mp3",
 };
 
 module.exports.handleEvent = async ({ api, event }) => {
