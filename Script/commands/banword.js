@@ -10,7 +10,7 @@ module.exports.config = {
   name: "banword",
   version: "4.0",
   hasPermssion: 0,
-  credits: "Md Hamim",
+  credits: "Md saim",
   description: "Animated stylish banword system for Mirai bot",
   commandCategory: "group",
   usages: "[on/off/add/remove/list]",
@@ -59,7 +59,7 @@ module.exports.handleEvent = async function ({ api, event }) {
       if (count < 3) {
         return api.sendMessage(
           `${emoji}━━━[ ⚠️ সতর্কতা ${count}/3 ]━━━${emoji}\n` +
-            `🚫 নিষিদ্ধ শব্দ শনাক্ত!\n💬 Word: "${word}"\n\n💡 ${line}\n\n👑 Credit: Md Hamim`,
+            `🚫 নিষিদ্ধ শব্দ শনাক্ত!\n💬 Word: "${word}"\n\n💡 ${line}\n\n👑 Credit: Md saim`,
           threadID
         );
       } else {
@@ -67,12 +67,12 @@ module.exports.handleEvent = async function ({ api, event }) {
         try {
           await api.removeUserFromGroup(senderID, threadID);
           return api.sendMessage(
-            `💥━━━[ BAN ALERT ]━━━💥\n👤 ${senderID} কে ৩ বার নিষিদ্ধ শব্দ ব্যবহারের জন্য গ্রুপ থেকে বাদ দেওয়া হয়েছে!\n\n👑 Credit: Md Hamim`,
+            `💥━━━[ BAN ALERT ]━━━💥\n👤 ${senderID} কে ৩ বার নিষিদ্ধ শব্দ ব্যবহারের জন্য গ্রুপ থেকে বাদ দেওয়া হয়েছে!\n\n👑 Credit: Md saim`,
             threadID
           );
         } catch {
           return api.sendMessage(
-            `⚠️ ${senderID} কে রিমুভ করা যায়নি (Admin প্রয়োজন)।\n👑 Credit: Md Hamim`,
+            `⚠️ ${senderID} কে রিমুভ করা যায়নি (Admin প্রয়োজন)।\n👑 Credit: Md saim`,
             threadID
           );
         }
@@ -96,7 +96,7 @@ module.exports.run = async function ({ api, event, args }) {
       group.enabled = true;
       saveData(data);
       return api.sendMessage(
-        `⚡━━━[ SYSTEM ON ]━━━⚡\n🟢 Banword System সক্রিয় হয়েছে!\nসব নিষিদ্ধ শব্দ auto delete হবে 🔥\n👑 Credit: Md Hamim`,
+        `⚡━━━[ SYSTEM ON ]━━━⚡\n🟢 Banword System সক্রিয় হয়েছে!\nসব নিষিদ্ধ শব্দ auto delete হবে 🔥\n👑 Credit: Md saim`,
         threadID
       );
 
@@ -104,7 +104,7 @@ module.exports.run = async function ({ api, event, args }) {
       group.enabled = false;
       saveData(data);
       return api.sendMessage(
-        `🔕━━━[ SYSTEM OFF ]━━━🔕\n❌ Banword System বন্ধ করা হয়েছে!\n👑 Credit: Md Hamim`,
+        `🔕━━━[ SYSTEM OFF ]━━━🔕\n❌ Banword System বন্ধ করা হয়েছে!\n👑 Credit: Md saim`,
         threadID
       );
 
@@ -117,7 +117,7 @@ module.exports.run = async function ({ api, event, args }) {
       group.words.push(newWord);
       saveData(data);
       return api.sendMessage(
-        `🌈 "${newWord}" সফলভাবে নিষিদ্ধ তালিকায় যোগ হয়েছে!\n👑 Credit: Md Hamim`,
+        `🌈 "${newWord}" সফলভাবে নিষিদ্ধ তালিকায় যোগ হয়েছে!\n👑 Credit: Md saim`,
         threadID
       );
 
@@ -131,7 +131,7 @@ module.exports.run = async function ({ api, event, args }) {
       group.words.splice(idx, 1);
       saveData(data);
       return api.sendMessage(
-        `🗑️ "${delWord}" নিষিদ্ধ তালিকা থেকে সরানো হয়েছে!\n👑 Credit: Md Hamim`,
+        `🗑️ "${delWord}" নিষিদ্ধ তালিকা থেকে সরানো হয়েছে!\n👑 Credit: Md saim`,
         threadID
       );
 
@@ -139,7 +139,7 @@ module.exports.run = async function ({ api, event, args }) {
       return api.sendMessage(
         `📜━━━[ BANWORD LIST ]━━━📜\n${group.words.join(", ")}\n\nStatus: ${
           group.enabled ? "🟢 ON" : "🔴 OFF"
-        }\n👑 Credit: Md Hamim`,
+        }\n👑 Credit: Md saim`,
         threadID
       );
 
@@ -152,7 +152,7 @@ module.exports.run = async function ({ api, event, args }) {
 🗑️ /banword remove <word> — শব্দ বাদ  
 📜 /banword list — নিষিদ্ধ তালিকা দেখো  
 
-👑 Developer: Md Hamim`,
+👑 Developer: Md saim`,
         threadID
       );
   }
