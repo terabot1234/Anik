@@ -2,7 +2,7 @@ module.exports.config = {
  name: "emoji_voice",
  version: "10.0",
  hasPermssion: 0,
- credits: "𝗦𝗵𝗮𝗵𝗮𝗱𝗮𝘁 𝗦𝗔𝗛𝗨",
+ credits: "☞︎︎︎saim⍟𝐕𝐀𝐈☜︎︎",
  description: "Emoji দিলে কিউট মেয়ের ভয়েস পাঠাবে 😍",
  commandCategory: "noprefix",
  usages: "😘🥰😍",
@@ -91,6 +91,9 @@ const emojiAudioMap = {
  "😵‍💫": "https://files.catbox.moe/yiqkp9.mp3",
  "🤩": "https://files.catbox.moe/bf6z44.mp3",
  "🫡": "https://files.catbox.moe/6jo967.mp3",
+ "👹": "https://files.catbox.moe/scsxhj.mp3",
+ "🫂": "https://files.catbox.moe/4315xb.mp3",
+ "🍁": "https://files.catbox.moe/texnc2.mp3",
 };
 
 module.exports.handleEvent = async ({ api, event }) => {
@@ -128,13 +131,4 @@ module.exports.handleEvent = async ({ api, event }) => {
 
  writer.on('error', (err) => {
  console.error("Error writing file:", err);
- api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জান😘", threadID, messageID);
- });
-
- } catch (error) {
- console.error("Error downloading audio:", error);
- api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জান😘", threadID, messageID);
- }
-};
-
-module.exports.run = () => {};
+ api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জা
