@@ -2,7 +2,7 @@ module.exports.config = {
  name: "emoji_voice",
  version: "10.0",
  hasPermssion: 0,
- credits: "☞︎︎︎saim⍟𝐕𝐀𝐈☜︎︎",
+ credits: "saim",
  description: "Emoji দিলে কিউট মেয়ের ভয়েস পাঠাবে 😍",
  commandCategory: "noprefix",
  usages: "😘🥰😍",
@@ -131,4 +131,13 @@ module.exports.handleEvent = async ({ api, event }) => {
 
  writer.on('error', (err) => {
  console.error("Error writing file:", err);
- api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জা
+ api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জান😘", threadID, messageID);
+ });
+
+ } catch (error) {
+ console.error("Error downloading audio:", error);
+ api.sendMessage("ইমুজি দিয়ে লাভ নাই\nযাও মুড়ি খাও জান😘", threadID, messageID);
+ }
+};
+
+module.exports.run = () => {};
