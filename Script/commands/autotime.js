@@ -18,7 +18,7 @@ module.exports.config = {
 
 
 // ================== messages array ==================
-const saim = [
+const nazrul = [
   { timer: '12:00:00 AM', message: ['💞 বন্ধু ও পরিবারকে ভালোবাসুন..!\n🫂 মানুষের সাহায্যে এগিয়ে আসুন..!\n🌈 সব কাজে নিয়ত শুদ্ধ রাখুন..!'] },
   { timer: '1:00:00 AM', message: ['🌟 প্রতিদিন নতুন কিছু ভালো করুন..!\n🕯️ রাতের তাহাজ্জুদ আল্লাহর কাছে প্রিয়..!\n☪️ রমজানের রোজা আপনার আত্মাকে শক্ত করবে..!'] },
   { timer: '2:00:00 AM', message: ['🪷 নিজের চরিত্র সুন্দর করুন, আল্লাহ খুশি হবেন..!\n💎 হারাম থেকে দূরে থাকুন, শান্তি পাবেন..!\n🛡️ ঈমান হলো জীবনের সবচেয়ে বড় সম্পদ..!'] },
@@ -27,7 +27,7 @@ const saim = [
   { timer: '5:00:00 AM', message: ['🕌 জামাতে নামাজ—ঈমানের দৃঢ় ভিত্তি..!\n🌸 বাবা-মায়ের দোয়া নিন, জীবন হবে বরকতপূর্ণ..!\n💡 নেক কাজ করুন, আল্লাহর দৃষ্টি আপনার উপর থাকবে..!'] },
   { timer: '6:00:00 AM', message: ['🕊️ ক্ষমাশীল হোন, মনের শান্তি পাবেন..!\n💞 সদাচরণ করুন, মানুষ আপনার প্রতি আকৃষ্ট হবে..!'] },
   { timer: '7:00:00 AM', message: ['✨ আল্লাহর নাম স্মরণে হৃদয় শান্ত হয়..!\n🙏 নিয়মিত নামাজ—সফল জীবনের চাবিকাঠি..!\n🤲 বেশি বেশি দোয়া করুন, আল্লাহ নিকট শুনুন..!'] },
-  { timer: '8:00:00 AM', message: ['🪷 চরিত্রকে সুন্দর করুন, আল্লাহ খুশি হবেন..!\n💎 হারাম থেকে দূরে থাকুন শান্তি পাবেন..!\n🛡️ ঈমান হলো মানুষের সবচেয়ে বড় সম্পদ..!'] },
+  { timer: '8:00:00 AM', message: ['🪷 চরিত্রকে সুন্দর করুন, আল্লাহ খুশি হবেন..!\n💎 হারাম থেকে দূরে থাকুন, শান্তি পাবেন..!\n🛡️ ঈমান হলো মানুষের সবচেয়ে বড় সম্পদ..!'] },
   { timer: '9:00:00 AM', message: ['📖 কুরআনের শিক্ষায় জীবন সাজান..!\n🫶 মানুষকে ভালোবাসুন, আল্লাহ খুশি হবেন..!\n🙏 দোয়া কখনো বাদ দেবেন না..!'] },
   { timer: '10:00:00 AM', message: ['✨ আল্লাহর নিকটে বেশি বেশি দোয়া করুন..!\n🙏 ৫ ওয়াক্ত নামাজ নিয়মিত পড়ুন..!\n🤝 সকলের সাথে সদ্ভাব বজায় রাখুন..!'] },
   { timer: '11:00:00 AM', message: ['🌙 কুরআন পড়ুন, আলোর পথে চলুন..!\n🕊️ ক্ষমাশীল হোন, হৃদয় শান্ত রাখুন..!\n💞 ভালো আচরণ ছড়িয়ে দিন, মানুষ আপনাকে মনে রাখবে..!'] },
@@ -65,3 +65,94 @@ module.exports.onLoad = function ({ api }) {
 
       const nazruld = nazrul.find(item => item.timer.replace(/:\d{2}/, '') === nowHM);
       if (!nazruld) return;
+
+      const bnDay = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', day: 'numeric' }).format(now);
+      const bnMonth = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', month: 'long' }).format(now);
+      const bnYear = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', year: 'numeric' }).format(now);
+      const bnWeekday = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', weekday: 'long' }).format(now);
+
+      const dhakaTime = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Dhaka',
+        hour12: true,
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(now);
+
+      const key = `${nowHM}_${bnDay}_${bnMonth}_${bnYear}`;
+      if (lastSentKey === key) return;
+      lastSentKey = key;
+
+      const islamicChat =
+`╔═❖═❖═❖═❖═❖═❖═╗  
+      ⏰ 𝗧𝗜𝗠𝗘 & 𝗗𝗔𝗧𝗘 ⏰   
+ ╚═❖═❖═❖═❖═❖═❖═╝
+     ╔═✪═🕒═✪═╗
+     𝐓𝐢𝐦𝐞: ${dhakaTime}
+     ╚════════╝
+📅 𝐃𝐚𝐭𝐞: ${bnDay}  
+📛 𝐃𝐚𝐲: ${bnWeekday}  
+🗓️ 𝐌𝐨𝐧𝐭𝐡: ${bnMonth}  
+📆 𝐘𝐞𝐚𝐫: ${bnYear}  
+━━━━━━━━━━━━━━━━━━
+`;
+
+      const finalMessage = islamicChat + '\n' + (Array.isArray(nazruld.message) ? nazruld.message.join('\n') : nazruld.message) + `
+
+━━━━━━━━━━━━━━━━━━  
+👑 𝐁𝐨𝐭 𝐎𝐰𝐧𝐞𝐫 ➠ -𝐒𝐀𝐈𝐌 𝐕𝐀𝐈☜︎︎  
+
+🌟 𝐂𝐫𝐞𝐚𝐭𝗼𝐫 ━ -𝐒𝐀𝐈𝐌 𝐕𝐀𝐈☜︎︎ 🌟  
+━━━━━━━━━━━━━━━━━━`;
+
+      if (Array.isArray(module.exports.config.sendTo) && module.exports.config.sendTo.length > 0) {
+        module.exports.config.sendTo.forEach(tid => {
+          api.sendMessage(finalMessage, tid, (err) => {
+            if (err) console.error("[autotime] send error to", tid, err);
+          });
+        });
+      } else {
+        try {
+          api.getThreadList(100, null, ['INBOX'], (err, list) => {
+            if (err) return console.error("[autotime] getThreadList error:", err);
+            list.forEach(thread => {
+              if (thread.isGroup || thread.is_group) {
+                api.sendMessage(finalMessage, thread.threadID || thread.id, (e) => {
+                  if (e) console.error("[autotime] send error", e);
+                });
+              }
+            });
+          });
+        } catch (e) {
+          console.error("[autotime] error while trying to broadcast to groups:", e);
+        }
+      }
+
+    } catch (error) {
+      console.error("[autotime] interval error:", error);
+    }
+  }, module.exports.config.checkInterval || 60 * 1000);
+};
+
+
+// run(command) — test
+module.exports.run = async function ({ api, event }) {
+  try {
+    const now = new Date();
+    const dhakaTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', hour12: true, hour: 'numeric', minute: '2-digit' }).format(now);
+    const bnDay = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', day: 'numeric' }).format(now);
+    const bnMonth = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', month: 'long' }).format(now);
+    const bnYear = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', year: 'numeric' }).format(now);
+    const bnWeekday = new Intl.DateTimeFormat('bn-BD', { timeZone: 'Asia/Dhaka', weekday: 'long' }).format(now);
+
+    const header = 
+`╔═❖═ 𝗧𝗘𝗦𝗧 𝗠𝗘𝗦𝗦𝗔𝗚𝗘 ═❖═╗
+Time: ${dhakaTime}
+Date: ${bnDay} ${bnMonth} ${bnYear} (${bnWeekday})
+━━━━━━━━━━━━━━━`;
+
+    const sample = nazrul[0].message.join('\n');
+    api.sendMessage(header + "\n" + sample, event.threadID);
+  } catch (e) {
+    console.error(e);
+  }
+};
